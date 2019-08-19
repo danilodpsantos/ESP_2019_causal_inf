@@ -151,10 +151,20 @@ mod <- glm(art ~ month +
            data = subset( dat_ex2 , pastart == 0 ) )
 	
 # nominator  (treatment)
-mod2 <- glm(art ~ month + monthsq
-	+ age_0 + I(age_0^2) + SEX + factor(origin) + factor(mode)
-	+ year_0 + cd4_0 + I(cd4_0^2) + rna_0 + I(rna_0^2),
-	family = binomial(), data = subset(dat_ex2,pastart==0))	
+
+mod2 <- glm(art ~ month +
+                  monthsq	+
+                  age_0 +
+                  I(age_0 ^ 2 ) + 
+                  SEX +
+                  factor( origin ) +
+                  factor( mode ) +
+                  year_0 +
+                  cd4_0 +
+                  I( cd4_0 ^ 2 ) +
+                  rna_0 + I( rna_0 ^ 2),
+             family = binomial(),
+             data = subset(dat_ex2, pastart == 0 ) )	
 
 #
 dat_ex2$probA.d <- ifelse(dat_ex2$pastart==1,1,	predict(mod, type = 'response'))
