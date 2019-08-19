@@ -114,6 +114,7 @@ exp( coef( mod2 ) [ 'art' ] )
 exp( coef( mod3 ) [ 'art' ] )
 
 # 6) CD4 cell count:
+
 # I) influences the decision to start treatment and is also affecting survival and is therefore a confounder.
 
 # II) CD4 count is also affected by prior treatment decisions (and that's why we can't use simple regression).
@@ -129,11 +130,25 @@ exp( coef( mod3 ) [ 'art' ] )
 
 # denominator (treatment)
 
-mod <- glm(art ~ month + monthsq
-	+ age_0 + I(age_0^2) + SEX + factor(origin) + factor(mode)
-	+ year_0 + cd4_0 + I(cd4_0^2) + rna_0 + I(rna_0^2)
-	+ cd4_v + I(cd4_v^2) + rna_v + I(rna_v^2) + aids,
-	family = binomial(), data = subset(dat_ex2,pastart==0))
+mod <- glm(art ~ month +
+                 monthsq +
+                 age_0 +
+                 I( age_0 ^ 2 ) +
+                 SEX +
+                 factor( origin ) +
+                 factor( mode )	+
+                 year_0 +
+                 cd4_0 +
+                 I( cd4_0 ^ 2 ) +
+                 rna_0 +
+                 I ( rna_0 ^ 2 ) +
+                 cd4_v +
+                 I(cd4_v ^ 2 ) +
+                 rna_v +
+                 I(rna_v ^ 2 ) +
+                 aids,
+           family = binomial(),
+           data = subset( dat_ex2 , pastart == 0 ) )
 	
 # nominator  (treatment)
 mod2 <- glm(art ~ month + monthsq
