@@ -302,13 +302,30 @@ exp( coef( modw.temp ) [ 'art' ] )
 # for robust standard errors either use geeglm or survey:
 
 install.packages('survey')
+
 require(survey)
-modw <- svyglm(death ~ art + month + monthsq
-	+ age_0 + I(age_0^2) + SEX + factor(origin) + factor(mode)
-	+ year_0 + cd4_0 + I(cd4_0^2) + rna_0 + I(rna_0^2),
-	family = quasibinomial(),
-	design = svydesign(id = ~id, weights = ~sw.trunc, data = dat_ex2))
-summary(modw)
-exp(coef(modw)['art'])
-exp(confint(modw)[2,])
+
+modw <- svyglm(death ~ art + 
+                       month +
+                       monthsq +
+                       age_0 +
+                       I(age_0 ^ 2 ) +
+                       SEX +  
+                       factor( origin ) +
+                       factor( mode )	+
+                       year_0 +
+                       cd4_0 +
+                       I(cd4_0 ^ 2 ) +
+                       rna_0 +
+                       I(rna_0 ^ 2),
+               family = quasibinomial(),
+               design = svydesign(id = ~ id,
+                                  weights = ~ sw.trunc,
+                                  data = dat_ex2))
+
+summary( modw )
+
+exp( coef( modw )[ 'art' ] )
+
+exp( confint( modw )[ 2 , ] )
 
