@@ -42,9 +42,16 @@ subset( dat_ex2,id == 96119 ) [ , c ('id' , 'month', 'art' , 'censor' , 'death' 
 #############################
 
 # Example: pooled logistic as an approximation to Cox model
-mod1 <- glm(death ~ art + month + monthsq,family = binomial(), data = dat_ex2)
+
+mod1 <- glm( death ~ art +
+                     month +
+                     monthsq,
+             family = binomial() ,
+             data = dat_ex2 )
+
 summary(mod1)
-exp(coef(mod1)['art'])
+
+exp( coef( mod1 ) [ 'art' ] )
 
 # adjusted for baseline confounders
 mod2 <- glm(death ~ art + month + monthsq
