@@ -76,12 +76,29 @@ summary(mod2)
 exp(coef(mod2)['art'])
 
 # adjusted for time-updated covariates
-mod3 <- glm(death ~ art + month + monthsq
-	+ age_0 + I(age_0^2) + SEX + factor(origin) + factor(mode)
-	+ year_0 + cd4_0 + I(cd4_0^2) + rna_0 + I(rna_0^2)
-	+ cd4_v + I(cd4_v^2) + rna_v + I(rna_v^2) + aids,
-	family = binomial(), data = dat_ex2)
+
+mod3 <- glm( death ~ art +
+                    month +
+                    monthsq	+
+                    age_0 +
+                    I( age_0 ^ 2 ) +
+                    SEX +
+                    factor( origin ) +
+                    factor( mode ) +
+                    year_0 +
+                    cd4_0 +
+                    I( cd4_0 ^ 2 ) +
+                    rna_0 + I( rna_0 ^ 2 )+
+                    cd4_v +
+                    I( cd4_v ^ 2 ) +
+                    rna_v +
+                    I( rna_v ^ 2 ) +
+                    aids,
+             family = binomial() ,
+             data = dat_ex2 )
+
 summary(mod3)
+
 exp(coef(mod3)['art'])
 
 ###############################
