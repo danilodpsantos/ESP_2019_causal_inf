@@ -278,12 +278,26 @@ dat_ex2$sw.trunc <- ifelse(dat_ex2$sw > 10 ,
 
 # MSM  (conditional on baseline confounders)
 
-modw.temp <- glm(death ~ art + month + monthsq
-	+ age_0 + I(age_0^2) + SEX + factor(origin) + factor(mode)
-	+ year_0 + cd4_0 + I(cd4_0^2) + rna_0 + I(rna_0^2),
-	family = quasibinomial(), data = dat_ex2, weights = sw.trunc)
-summary(modw.temp)
-exp(coef(modw.temp)['art'])
+modw.temp <- glm(death ~ art +
+                         month + 
+                         monthsq +
+                         age_0 +
+                         I(age_0 ^ 2 ) +
+                         SEX +
+                         factor( origin ) +
+                         factor( mode )	+
+                         year_0 +
+                         cd4_0 +
+                         I(cd4_0 ^ 2 ) +
+                         rna_0 +
+                         I(rna_0 ^ 2 ),
+                 family = quasibinomial(),
+                 data = dat_ex2,
+                 weights = sw.trunc )
+
+summary(modw.temp) 
+
+exp( coef( modw.temp ) [ 'art' ] )
 
 # for robust standard errors either use geeglm or survey:
 
