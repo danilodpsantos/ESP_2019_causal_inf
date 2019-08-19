@@ -1,3 +1,5 @@
+## EXERCISE 3 ERASMUS SP 2019 
+
 setwd('U:/ESP2019/ESP48/AdditionalMaterial_R/dat') #insert folder path where data are saved locally
 dat <- read.csv('lab3.csv')
 
