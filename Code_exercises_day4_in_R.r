@@ -228,13 +228,18 @@ dat_ex2$probC.n <- predict(mod4, type = 'response')
 # Calculate stabilized and non-stabilized weights:
 
 # treatment
-dat_ex2$A.num <- ifelse(dat_ex2$art==1,dat_ex2$probA.n,1-dat_ex2$probA.n)
-dat_ex2$A.den <- ifelse(dat_ex2$art==1,dat_ex2$probA.d,1-dat_ex2$probA.d)
-dat_ex2$A.numcum <- ave(dat_ex2$A.num,dat_ex2$id,	FUN=function(x) cumprod(x))
-dat_ex2$A.dencum <- ave(dat_ex2$A.den,dat_ex2$id, FUN=function(x) cumprod(x))
 
-dat_ex2$swA <- dat_ex2$A.numcum/dat_ex2$A.dencum
-dat_ex2$wA <- 1/dat_ex2$A.dencum
+dat_ex2$A.num <- ifelse(dat_ex2$art == 1 , dat_ex2$probA.n , 1 - dat_ex2$probA.n )
+
+dat_ex2$A.den <- ifelse(dat_ex2$art == 1 , dat_ex2$probA.d , 1 - dat_ex2$probA.d )
+
+dat_ex2$A.numcum <- ave(dat_ex2$A.num , dat_ex2$id ,	FUN = function( x ) cumprod( x ) )
+
+dat_ex2$A.dencum <- ave(dat_ex2$A.den , dat_ex2$id , FUN = function( x ) cumprod( x ) )
+
+dat_ex2$swA <- dat_ex2$A.numcum / dat_ex2$A.dencum
+
+dat_ex2$wA <- 1 / dat_ex2$A.dencum
 
 # censoring
 dat_ex2$C.numcum <- ave(dat_ex2$probC.n,dat_ex2$id, FUN=function(x) cumprod(x))
