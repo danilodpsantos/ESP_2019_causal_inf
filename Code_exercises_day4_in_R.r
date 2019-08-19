@@ -242,18 +242,28 @@ dat_ex2$swA <- dat_ex2$A.numcum / dat_ex2$A.dencum
 dat_ex2$wA <- 1 / dat_ex2$A.dencum
 
 # censoring
-dat_ex2$C.numcum <- ave(dat_ex2$probC.n,dat_ex2$id, FUN=function(x) cumprod(x))
-dat_ex2$C.dencum <- ave(dat_ex2$probC.d,dat_ex2$id, FUN=function(x) cumprod(x))
-dat_ex2$swC <- dat_ex2$C.numcum/dat_ex2$C.dencum
-dat_ex2$wC <- 1/dat_ex2$C.dencum
+
+dat_ex2$C.numcum <- ave( dat_ex2$probC.n , dat_ex2$id , FUN = function( x ) cumprod( x ) )
+
+dat_ex2$C.dencum <- ave( dat_ex2$probC.d , dat_ex2$id , FUN = function( x ) cumprod( x ) )
+
+dat_ex2$swC <- dat_ex2$C.numcum / dat_ex2$C.dencum
+
+dat_ex2$wC <- 1 / dat_ex2$C.dencum
 
 # combined
-dat_ex2$sw <- dat_ex2$swA*dat_ex2$swC
-dat_ex2$w <- dat_ex2$wA*dat_ex2$wC
+
+dat_ex2$sw <- dat_ex2$swA * dat_ex2$swC
+
+dat_ex2$w <- dat_ex2$wA * dat_ex2$wC
 
 # summary
-summary(dat_ex2[,c('swA','wA','swC','wC','sw','w')])
-dat_ex2$sw.trunc <- ifelse(dat_ex2$sw>10,10,dat_ex2$sw)
+
+summary(dat_ex2[ , c( 'swA' , 'wA' , 'swC' , 'wC' , 'sw' , 'w' ) ] )
+
+dat_ex2$sw.trunc <- ifelse(dat_ex2$sw > 10 ,
+                           10 ,
+                           dat_ex2$sw )
 
 #############################
 # Here: Exercise Question 8 #
