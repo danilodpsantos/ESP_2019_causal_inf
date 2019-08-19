@@ -207,10 +207,22 @@ mod3 <- glm(notcensor ~ art +
 dat_ex2$probC.d <- predict( mod3 , type = 'response')
 
 # nominator model (censoring)
-mod4 <- glm(notcensor ~ art + month + monthsq
-	+ age_0 + I(age_0^2) + SEX + factor(origin) + factor(mode)
-	+ year_0 + cd4_0 + I(cd4_0^2) + rna_0 + I(rna_0^2),
-	family = binomial(), data = dat_ex2)
+
+mod4 <- glm(notcensor ~ art +
+                        month +
+                        monthsq	+
+                        age_0 +
+                        I(age_0 ^ 2) +
+                        SEX +
+                        factor( origin ) +
+                        factor( mode )	+
+                        year_0 +
+                        cd4_0 +
+                        I(cd4_0 ^ 2) +
+                        rna_0 + I(rna_0 ^ 2 ),
+            family = binomial(),
+            data = dat_ex2 )
+
 dat_ex2$probC.n <- predict(mod4, type = 'response')
 
 # Calculate stabilized and non-stabilized weights:
