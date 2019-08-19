@@ -128,6 +128,8 @@ exp( coef( mod3 ) [ 'art' ] )
 
 # IPTW weights
 
+## TREATMENT WEIGHTS:
+
 # denominator (treatment)
 
 mod <- glm(art ~ month +
@@ -172,17 +174,37 @@ dat_ex2$probA.d <- ifelse( dat_ex2$pastart == 1 , 1 , predict(mod, type = 'respo
 
 dat_ex2$probA.n <- ifelse(dat_ex2$pastart == 1 , 1 , predict( mod2 , type = 'response'))
 
+
+## CENSORING WEIGHTS
+
 # probability of NOT being censored
 
 dat_ex2$notcensor <- 1 - dat_ex2$censor
 
 # denominator model (censoring)
-mod3 <- glm(notcensor ~ art + month + monthsq
-	+ age_0 + I(age_0^2) + SEX + factor(origin) + factor(mode)
-	+ year_0 + cd4_0 + I(cd4_0^2) + rna_0 + I(rna_0^2)
-	+ cd4_v + I(cd4_v^2) + rna_v + I(rna_v^2) + aids,
-	family = binomial(), data = dat_ex2)
-dat_ex2$probC.d <- predict(mod3, type = 'response')
+
+mod3 <- glm(notcensor ~ art +
+                        month +
+                        monthsq	+
+                        age_0 +
+                        I( age_0 ^ 2 ) +
+                        SEX +
+                        factor( origin ) +
+                        factor( mode ) +
+                        year_0 +
+                        cd4_0 +
+                        I(cd4_0 ^ 2) +
+                        rna_0 +
+                        I(rna_0 ^ 2) +
+                        cd4_v +
+                        I( cd4_v ^ 2 ) +
+                        rna_v +
+                        I( rna_v ^ 2 ) +
+                        aids,
+            family = binomial(),
+            data = dat_ex2 )
+
+dat_ex2$probC.d <- predict( mod3 , type = 'response')
 
 # nominator model (censoring)
 mod4 <- glm(notcensor ~ art + month + monthsq
