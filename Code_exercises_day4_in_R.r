@@ -106,12 +106,17 @@ exp(coef(mod3)['art'])
 ###############################
 
 # 5)-> note that crude OR/HR suggests that "ART is bad for you" (because of time-varying confounding affected by prior treatment)
-exp(coef(mod1)['art'])
-exp(coef(mod2)['art'])
-exp(coef(mod3)['art'])
 
-# 6) CD4 cell count i) influences the decision to start treatment and ii) is also affecting survival and is therefore
-#    a confounder. CD4 count is also affected by prior treatment decisions (and that's why we can't use simple regression).
+exp( coef ( mod1 ) [ 'art' ] )
+
+exp( coef( mod2 ) [ 'art' ] )
+
+exp( coef( mod3 ) [ 'art' ] )
+
+# 6) CD4 cell count:
+# I) influences the decision to start treatment and is also affecting survival and is therefore a confounder.
+
+# II) CD4 count is also affected by prior treatment decisions (and that's why we can't use simple regression).
 
 # 7) see key answers
 
