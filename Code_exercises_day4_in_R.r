@@ -12,18 +12,20 @@ nrow(dat_ex2)
 length( unique ( dat_ex2$id ) )
 
 # Example: a few selected patients
-subset(dat_ex2,id==95001)[,c('id','month','art','censor','death')]
-subset(dat_ex2,id==95002)[,c('id','month','art','censor','death')]
-subset(dat_ex2,id==96119)[,c('id','month','art','censor','death')]
 
+subset( dat_ex2 , id == 95001 ) [ , c ('id' , 'month', 'art' , 'censor' , 'death' ) ]
+subset(dat_ex2,id==95002) [ , c ('id' , 'month', 'art' , 'censor' , 'death' ) ]
+subset(dat_ex2,id==96119) [ , c ('id' , 'month', 'art' , 'censor' , 'death' ) ]
 
 ###############################
 # Here: Exercise Question 1-4 #
 ###############################
 
 # 1)
-nrow(dat_ex2)
-nrow(dat_ex2[!duplicated(dat_ex2[,'id']),])
+
+nrow( dat_ex2 )
+
+length( unique ( dat_ex2$id ) )
 
 # 2) at month 9 and 60 patient months:
 subset(dat_ex2,id==95001)[,c('id','month','art','censor','death')]
