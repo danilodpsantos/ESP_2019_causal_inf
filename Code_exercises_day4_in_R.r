@@ -166,12 +166,15 @@ mod2 <- glm(art ~ month +
              family = binomial(),
              data = subset(dat_ex2, pastart == 0 ) )	
 
-#
-dat_ex2$probA.d <- ifelse(dat_ex2$pastart==1,1,	predict(mod, type = 'response'))
-dat_ex2$probA.n <- ifelse(dat_ex2$pastart==1,1, predict(mod2, type = 'response'))
+# Prediction of the nominator and denominator according to each patient characteristics:
+
+dat_ex2$probA.d <- ifelse( dat_ex2$pastart == 1 , 1 , predict(mod, type = 'response' ) )
+
+dat_ex2$probA.n <- ifelse(dat_ex2$pastart == 1 , 1 , predict( mod2 , type = 'response'))
 
 # probability of NOT being censored
-dat_ex2$notcensor <- 1- dat_ex2$censor
+
+dat_ex2$notcensor <- 1 - dat_ex2$censor
 
 # denominator model (censoring)
 mod3 <- glm(notcensor ~ art + month + monthsq
